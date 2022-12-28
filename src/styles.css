@@ -1,0 +1,35 @@
+/* How to use a css framework globally in angular: https://www.techiediaries.com/angular-bootstrap/#:~:text=3%2B%20Ways%20to%20Include%20Bootstrap%205%20In%20Your%20Angular%2015%20Project&text=Import%20the%20Bootstrap%20CSS%20file,json%20file%20of%20your%20project */
+/* You can add global styles to this file, and also import other style files */
+* {
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+        "Helvetica Neue", sans-serif;
+}
+
+.titles {
+    font-family: "Exo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+}
+
+.subtitles {
+    font-family: "Rubik", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+        "Helvetica Neue", sans-serif;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.light {
+    font-weight: lighter;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.normal {
+    font-style: normal;
+}
