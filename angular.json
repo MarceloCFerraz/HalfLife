@@ -19,11 +19,10 @@
                         "polyfills": ["zone.js"],
                         "tsConfig": "tsconfig.app.json",
                         "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": [
-                            "src/styles.css",
-                            "./node_modules/uikit/dist/css/uikit.css"
-                        ],
-                        "scripts": ["./node_modules/uikit/dist/js/uikit.js"]
+                        "styles": ["src/styles.css"],
+                        "scripts": [
+                            "./node_modules/bootstrap/dist/js/bootstrap.js"
+                        ]
                     },
                     "configurations": {
                         "production": {
