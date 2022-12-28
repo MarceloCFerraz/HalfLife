@@ -1,5 +1,7 @@
 # Halflife
 
+This is a personal project that aims to help regular people and health professionals to calculate how much time one or more drugs will remain in their system.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 
 ## Development server
