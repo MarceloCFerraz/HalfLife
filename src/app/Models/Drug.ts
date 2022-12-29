@@ -3,4 +3,5 @@ export interface Drug {
     dosage: number;
     halfLife: number;
     application_interval: number;
+    duration: number;
 }

@@ -1,6 +1,5 @@
 import { Drug } from "./Drug";
 
-export interface Cycle {
+export interface Protocol {
     drugs: Drug[];
-    duration: number;
 }
