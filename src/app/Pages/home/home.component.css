@@ -1,0 +1,28 @@
+input {
+    border: none;
+    background-color: transparent;
+    color: rgb(26, 21, 19);
+}
+
+input:focus {
+    outline: none;
+}
+
+select {
+    border: none;
+    background-color: transparent;
+}
+
+select:focus {
+    outline: none;
+}
+
+a {
+    color: rgb(163, 151, 146);
+}
+
+button {
+    background-color: rgb(59, 47, 42);
+    color: white;
+    border-radius: 0.3em;
+}
