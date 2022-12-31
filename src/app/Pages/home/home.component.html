@@ -1,157 +1,171 @@
 <div class="container pt-5 pb-5 bg-light bg-gradient rounded-5">
+    <h4 class="titles italic bold text-center">Mount your protocol</h4>
+
     <form
-        [formGroup]="drugForm"
+        [formGroup]="protocolForm"
         class="form"
         (submit)="ShowResult()"
         id="main-div"
     >
-        <h4 class="titles italic bold text-center">Mount your protocol</h4>
-
-        <div class="container">
-            <div class="form-group row pt-4 ms-5 me-5 text-start">
-                <p class="subtitles">
-                    <label for="drug-name">Drug name</label>
-                </p>
-                <div class="container">
-                    <div
-                        class="row justify-content-between border-bottom border-dark-subtle"
-                    >
-                        <div class="align-self-start">
-                            <input
-                                class="col-12 form-control"
-                                type="text"
-                                name="drug-name"
-                                placeholder="e.g. Aspirin"
-                                formControlName="name"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group row pt-4 ms-5 me-5 text-start">
-                <p class="subtitles">
-                    <label for="drug-name">Dosage</label>
-                </p>
-                <div class="container">
-                    <div
-                        class="row justify-content-between border-bottom border-dark-subtle"
-                    >
-                        <div class="col-6 align-self-start">
-                            <input
-                                class="col-12 form-control"
-                                type="number"
-                                name="drug-dosage"
-                                placeholder="e.g. 100"
-                                formControlName="dosage"
-                            />
-                        </div>
-                        <div class="col-6 align-self-end text-end">
-                            <select formControlName="dosage_measure">
-                                <option>mg</option>
-                                <option>mcg</option>
-                                <option>g</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group row pt-4 ms-5 me-5 text-start">
-                <p class="subtitles">
-                    <label for="drug-name">Half life</label>
-                </p>
-                <div class="container">
-                    <div
-                        class="row justify-content-between border-bottom border-dark-subtle"
-                    >
-                        <div class="col-6 align-self-start">
-                            <input
-                                class="col-12 form-control"
-                                type="number"
-                                name="drug-halflife"
-                                placeholder="e.g. 2"
-                                formControlName="halflife"
-                            />
-                        </div>
-                        <div class="col-6 align-self-end text-end">
-                            <select formControlName="halflife_measure">
-                                <option>hour(s)</option>
-                                <option>day(s)</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group row pt-4 ms-5 me-5 text-start">
-                <p class="subtitles">
-                    <label for="drug-name">Interval between applications</label>
-                </p>
-                <div class="container">
-                    <div
-                        class="row justify-content-between border-bottom border-dark-subtle"
-                    >
-                        <div class="col-6 align-self-start">
-                            <input
-                                class="col-12 form-control"
-                                type="number"
-                                name="application_interval"
-                                placeholder="e.g. 7"
-                                formControlName="application_interval"
-                            />
-                        </div>
-                        <div class="col-6 align-self-end text-end">
-                            <select
-                                formControlName="application_interval_measure"
+        <ng-container formArrayName="drugs">
+            <ng-container
+                class="py-5"
+                *ngFor="let drugForm of drugs.controls; let i = index"
+            >
+                <div
+                    class="container border border-dark-subtle rounded-5"
+                    [formGroupName]="i"
+                >
+                    <div class="form-group row pt-4 ms-5 me-5 text-start">
+                        <p class="subtitles">
+                            <label for="drug-name">Drug name</label>
+                        </p>
+                        <div class="container">
+                            <div
+                                class="row justify-content-between border-bottom border-dark-subtle"
                             >
-                                <option>hour(s)</option>
-                                <option>day(s)</option>
-                                <option>week(s)</option>
-                            </select>
+                                <div class="align-self-start">
+                                    <input
+                                        class="col-12 form-control"
+                                        type="text"
+                                        name="drug-name"
+                                        placeholder="e.g. Aspirin"
+                                        formControlName="name"
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="form-group row pt-4 ms-5 me-5 text-start">
-                <p class="subtitles">
-                    <label for="drug-name">Duration of drug in protocol</label>
-                </p>
-                <div class="container">
-                    <div
-                        class="row justify-content-between border-bottom border-dark-subtle"
-                    >
-                        <div class="col-6 align-self-start">
-                            <input
-                                class="col-12 form-control"
-                                type="number"
-                                name="duration"
-                                placeholder="e.g. 30"
-                                formControlName="duration"
-                            />
+                    <div class="form-group row pt-4 ms-5 me-5 text-start">
+                        <p class="subtitles">
+                            <label for="drug-name">Dosage</label>
+                        </p>
+                        <div class="container">
+                            <div
+                                class="row justify-content-between border-bottom border-dark-subtle"
+                            >
+                                <div class="col-6 align-self-start">
+                                    <input
+                                        class="col-12 form-control"
+                                        type="number"
+                                        name="drug-dosage"
+                                        placeholder="e.g. 100"
+                                        formControlName="dosage"
+                                    />
+                                </div>
+                                <div class="col-6 align-self-end text-end">
+                                    <select formControlName="dosage_measure">
+                                        <option>mg</option>
+                                        <option>mcg</option>
+                                        <option>g</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-6 align-self-end text-end">
-                            <select formControlName="duration_measure">
-                                <option>day(s)</option>
-                                <option>week(s)</option>
-                                <option>month(s)</option>
-                            </select>
+                    </div>
+
+                    <div class="form-group row pt-4 ms-5 me-5 text-start">
+                        <p class="subtitles">
+                            <label for="drug-name">Half life</label>
+                        </p>
+                        <div class="container">
+                            <div
+                                class="row justify-content-between border-bottom border-dark-subtle"
+                            >
+                                <div class="col-6 align-self-start">
+                                    <input
+                                        class="col-12 form-control"
+                                        type="number"
+                                        name="drug-halflife"
+                                        placeholder="e.g. 2"
+                                        formControlName="halflife"
+                                    />
+                                </div>
+                                <div class="col-6 align-self-end text-end">
+                                    <select formControlName="halflife_measure">
+                                        <option>hour(s)</option>
+                                        <option>day(s)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row pt-4 ms-5 me-5 text-start">
+                        <p class="subtitles">
+                            <label for="drug-name"
+                                >Interval between applications</label
+                            >
+                        </p>
+                        <div class="container">
+                            <div
+                                class="row justify-content-between border-bottom border-dark-subtle"
+                            >
+                                <div class="col-6 align-self-start">
+                                    <input
+                                        class="col-12 form-control"
+                                        type="number"
+                                        name="application_interval"
+                                        placeholder="e.g. 7"
+                                        formControlName="application_interval"
+                                    />
+                                </div>
+                                <div class="col-6 align-self-end text-end">
+                                    <select
+                                        formControlName="application_interval_measure"
+                                    >
+                                        <option>hour(s)</option>
+                                        <option>day(s)</option>
+                                        <option>week(s)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row pt-4 ms-5 me-5 text-start">
+                        <p class="subtitles">
+                            <label for="drug-name"
+                                >Duration of drug in protocol</label
+                            >
+                        </p>
+                        <div class="container">
+                            <div
+                                class="row justify-content-between border-bottom border-dark-subtle"
+                            >
+                                <div class="col-6 align-self-start">
+                                    <input
+                                        class="col-12 form-control"
+                                        type="number"
+                                        name="duration"
+                                        placeholder="e.g. 30"
+                                        formControlName="duration"
+                                    />
+                                </div>
+                                <div class="col-6 align-self-end text-end">
+                                    <select formControlName="duration_measure">
+                                        <option>day(s)</option>
+                                        <option>week(s)</option>
+                                        <option>month(s)</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </ng-container>
+        </ng-container>
 
         <div class="text-center pt-4">
-            <a href="#" class="subtitles text-body-emphasis"
+            <a (click)="addDrug()" class="subtitles text-body-emphasis"
                 >+ Add another drug</a
             >
         </div>
 
         <div class="text-center pt-5">
             <button
-                [disabled]="drugForm.invalid"
+                [disabled]="protocolForm.invalid"
                 type="submit"
                 class="subtitles light py-2 px-4"
             >

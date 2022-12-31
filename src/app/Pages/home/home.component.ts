@@ -2,7 +2,7 @@ import { ProtocolService } from "./../../Services/protocol.service";
 import { Protocol } from "./../../Models/Protocol";
 import { Component, OnInit } from "@angular/core";
 import { Drug } from "src/app/Models/Drug";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
 @Component({
@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
     styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
-    drugForm!: FormGroup;
+    protocolForm!: FormGroup;
     drug!: Drug;
     protocol!: Protocol;
 
@@ -25,7 +25,32 @@ export class HomeComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.drugForm = this._formBuilder.group({
+        this.protocolForm = this._formBuilder.group({
+            drugs: this._formBuilder.array([
+                this._formBuilder.group({
+                    name: ["", [Validators.required]],
+                    dosage: ["", [Validators.required]],
+                    dosage_measure: ["mg", [Validators.required]],
+                    halflife: ["", [Validators.required]],
+                    halflife_measure: ["hour(s)", [Validators.required]],
+                    application_interval: ["", [Validators.required]],
+                    application_interval_measure: [
+                        "hour(s)",
+                        [Validators.required],
+                    ],
+                    duration: ["", [Validators.required]],
+                    duration_measure: ["day(s)", [Validators.required]],
+                }),
+            ]),
+        });
+    }
+
+    get drugs() {
+        return this.protocolForm.controls["drugs"] as FormArray;
+    }
+
+    addDrug() {
+        const drugForm = this._formBuilder.group({
             name: ["", [Validators.required]],
             dosage: ["", [Validators.required]],
             dosage_measure: ["mg", [Validators.required]],
@@ -36,11 +61,13 @@ export class HomeComponent implements OnInit {
             duration: ["", [Validators.required]],
             duration_measure: ["day(s)", [Validators.required]],
         });
+
+        this.drugs.push(drugForm);
     }
 
     ShowResult() {
-        if (this.drugForm.valid) {
-            this.drug = this.drugForm.getRawValue() as Drug;
+        if (this.protocolForm.valid) {
+            this.drug = this.protocolForm.getRawValue() as Drug;
             console.table(this.drug);
         }
     }
