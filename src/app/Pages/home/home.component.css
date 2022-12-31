@@ -26,3 +26,15 @@ button {
     color: white;
     border-radius: 0.3em;
 }
+
+/* HOW TO HIDE ARROWS FROM NUMBER INPUT 👇🏻 */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}

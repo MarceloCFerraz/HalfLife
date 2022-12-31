@@ -1,9 +1,14 @@
-<div class="container pt-5 pb-5 bg-light bg-gradient">
-    <div id="main-div">
+<div class="container pt-5 pb-5 bg-light bg-gradient rounded-5">
+    <form
+        [formGroup]="drugForm"
+        class="form"
+        (submit)="ShowResult()"
+        id="main-div"
+    >
         <h4 class="titles italic bold text-center">Mount your protocol</h4>
 
         <div class="container">
-            <div class="row pt-4 ms-5 me-5 text-start">
+            <div class="form-group row pt-4 ms-5 me-5 text-start">
                 <p class="subtitles">
                     <label for="drug-name">Drug name</label>
                 </p>
@@ -13,17 +18,18 @@
                     >
                         <div class="align-self-start">
                             <input
-                                class="col-12"
+                                class="col-12 form-control"
                                 type="text"
                                 name="drug-name"
                                 placeholder="e.g. Aspirin"
+                                formControlName="name"
                             />
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row pt-4 ms-5 me-5 text-start">
+            <div class="form-group row pt-4 ms-5 me-5 text-start">
                 <p class="subtitles">
                     <label for="drug-name">Dosage</label>
                 </p>
@@ -33,24 +39,25 @@
                     >
                         <div class="col-6 align-self-start">
                             <input
-                                class="col-12"
-                                type="text"
+                                class="col-12 form-control"
+                                type="number"
                                 name="drug-dosage"
                                 placeholder="e.g. 100"
+                                formControlName="dosage"
                             />
                         </div>
                         <div class="col-6 align-self-end text-end">
-                            <select>
-                                <option value="">mg</option>
-                                <option value="">mcg</option>
-                                <option value="">g</option>
+                            <select formControlName="dosage_measure">
+                                <option>mg</option>
+                                <option>mcg</option>
+                                <option>g</option>
                             </select>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row pt-4 ms-5 me-5 text-start">
+            <div class="form-group row pt-4 ms-5 me-5 text-start">
                 <p class="subtitles">
                     <label for="drug-name">Half life</label>
                 </p>
@@ -60,23 +67,24 @@
                     >
                         <div class="col-6 align-self-start">
                             <input
-                                class="col-12"
-                                type="text"
+                                class="col-12 form-control"
+                                type="number"
                                 name="drug-halflife"
                                 placeholder="e.g. 2"
+                                formControlName="halflife"
                             />
                         </div>
                         <div class="col-6 align-self-end text-end">
-                            <select>
-                                <option value="">hour(s)</option>
-                                <option value="">day(s)</option>
+                            <select formControlName="halflife_measure">
+                                <option>hour(s)</option>
+                                <option>day(s)</option>
                             </select>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row pt-4 ms-5 me-5 text-start">
+            <div class="form-group row pt-4 ms-5 me-5 text-start">
                 <p class="subtitles">
                     <label for="drug-name">Interval between applications</label>
                 </p>
@@ -86,24 +94,27 @@
                     >
                         <div class="col-6 align-self-start">
                             <input
-                                class="col-12"
-                                type="text"
-                                name="drug-interval"
+                                class="col-12 form-control"
+                                type="number"
+                                name="application_interval"
                                 placeholder="e.g. 7"
+                                formControlName="application_interval"
                             />
                         </div>
                         <div class="col-6 align-self-end text-end">
-                            <select>
-                                <option value="">hour(s)</option>
-                                <option value="">day(s)</option>
-                                <option value="">week(s)</option>
+                            <select
+                                formControlName="application_interval_measure"
+                            >
+                                <option>hour(s)</option>
+                                <option>day(s)</option>
+                                <option>week(s)</option>
                             </select>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row pt-4 ms-5 me-5 text-start">
+            <div class="form-group row pt-4 ms-5 me-5 text-start">
                 <p class="subtitles">
                     <label for="drug-name">Duration of drug in protocol</label>
                 </p>
@@ -113,17 +124,18 @@
                     >
                         <div class="col-6 align-self-start">
                             <input
-                                class="col-12"
-                                type="text"
-                                name="drug-duration"
+                                class="col-12 form-control"
+                                type="number"
+                                name="duration"
                                 placeholder="e.g. 30"
+                                formControlName="duration"
                             />
                         </div>
                         <div class="col-6 align-self-end text-end">
-                            <select>
-                                <option value="">day(s)</option>
-                                <option value="">week(s)</option>
-                                <option value="">month(s)</option>
+                            <select formControlName="duration_measure">
+                                <option>day(s)</option>
+                                <option>week(s)</option>
+                                <option>month(s)</option>
                             </select>
                         </div>
                     </div>
@@ -138,7 +150,13 @@
         </div>
 
         <div class="text-center pt-5">
-            <button class="subtitles light py-2 px-4">Show Results</button>
+            <button
+                [disabled]="drugForm.invalid"
+                type="submit"
+                class="subtitles light py-2 px-4"
+            >
+                Show Results
+            </button>
         </div>
-    </div>
+    </form>
 </div>
