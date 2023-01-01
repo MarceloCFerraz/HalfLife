@@ -8,4 +8,12 @@ export class ProtocolService {
     protocol!: Protocol;
 
     constructor() {}
+
+    saveProtocol(protocol: Protocol) {
+        this.protocol = protocol;
+    }
+
+    getProtocol() {
+        return this.protocol;
+    }
 }

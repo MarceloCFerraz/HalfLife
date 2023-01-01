@@ -59,7 +59,10 @@ export class HomeComponent implements OnInit {
         if (this.protocolForm.valid) {
             const protocol: Protocol =
                 this.protocolForm.getRawValue() as Protocol;
-            console.table(protocol.drugs);
+
+            this._service.saveProtocol(protocol);
+
+            this._router.navigate(["result"]);
         }
     }
 }

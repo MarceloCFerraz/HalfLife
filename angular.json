@@ -25,7 +25,8 @@
                             "./node_modules/bootstrap/dist/css/bootstrap.css"
                         ],
                         "scripts": [
-                            "./node_modules/bootstrap/dist/js/bootstrap.js"
+                            "./node_modules/bootstrap/dist/js/bootstrap.js",
+                            "./node_modules/chart.js/dist/chart.js"
                         ]
                     },
                     "configurations": {
@@ -87,6 +88,6 @@
         }
     },
     "cli": {
-      "analytics": "45d1d1e1-50cb-43f6-87e7-1aaf48a88c01"
+        "analytics": "45d1d1e1-50cb-43f6-87e7-1aaf48a88c01"
     }
 }
