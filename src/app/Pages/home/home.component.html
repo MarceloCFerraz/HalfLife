@@ -9,14 +9,24 @@
     >
         <ng-container formArrayName="drugs">
             <ng-container
-                class="py-5"
                 *ngFor="let drugForm of drugs.controls; let i = index"
             >
                 <div
                     class="container border border-dark-subtle rounded-5"
                     [formGroupName]="i"
                 >
-                    <div class="form-group row pt-4 ms-5 me-5 text-start">
+                    <div class="col justify-content-end text-end">
+                        <div class="position-relative">
+                            <div class="col position-absolute end-0 pt-3 pe-3">
+                                <i
+                                    (click)="deleteDrug(i)"
+                                    class="bi bi-x-square fs-3 text-danger"
+                                ></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row pt-4 mx-5 text-start">
                         <p class="subtitles">
                             <label for="drug-name">Drug name</label>
                         </p>
@@ -37,7 +47,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group row pt-4 ms-5 me-5 text-start">
+                    <div class="form-group row pt-4 mx-5 text-start">
                         <p class="subtitles">
                             <label for="drug-name">Dosage</label>
                         </p>
@@ -65,7 +75,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group row pt-4 ms-5 me-5 text-start">
+                    <div class="form-group row pt-4 mx-5 text-start">
                         <p class="subtitles">
                             <label for="drug-name">Half life</label>
                         </p>
@@ -92,7 +102,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group row pt-4 ms-5 me-5 text-start">
+                    <div class="form-group row pt-4 mx-5 text-start">
                         <p class="subtitles">
                             <label for="drug-name"
                                 >Interval between applications</label
@@ -124,7 +134,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group row pt-4 ms-5 me-5 text-start">
+                    <div class="form-group row py-4 mx-5 text-start">
                         <p class="subtitles">
                             <label for="drug-name"
                                 >Duration of drug in protocol</label
@@ -154,6 +164,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="py-2"></div>
             </ng-container>
         </ng-container>
 

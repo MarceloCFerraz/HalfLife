@@ -12,12 +12,7 @@ import { Router } from "@angular/router";
 })
 export class HomeComponent implements OnInit {
     protocolForm!: FormGroup;
-    drug!: Drug;
-    protocol!: Protocol;
 
-    /**
-     *
-     */
     constructor(
         private _service: ProtocolService,
         private _formBuilder: FormBuilder,
@@ -27,20 +22,7 @@ export class HomeComponent implements OnInit {
     ngOnInit(): void {
         this.protocolForm = this._formBuilder.group({
             drugs: this._formBuilder.array([
-                this._formBuilder.group({
-                    name: ["", [Validators.required]],
-                    dosage: ["", [Validators.required]],
-                    dosage_measure: ["mg", [Validators.required]],
-                    halflife: ["", [Validators.required]],
-                    halflife_measure: ["hour(s)", [Validators.required]],
-                    application_interval: ["", [Validators.required]],
-                    application_interval_measure: [
-                        "hour(s)",
-                        [Validators.required],
-                    ],
-                    duration: ["", [Validators.required]],
-                    duration_measure: ["day(s)", [Validators.required]],
-                }),
+                this._formBuilder.group(this.generateNewDrug()),
             ]),
         });
     }
@@ -50,7 +32,17 @@ export class HomeComponent implements OnInit {
     }
 
     addDrug() {
-        const drugForm = this._formBuilder.group({
+        const drugForm = this._formBuilder.group(this.generateNewDrug());
+
+        this.drugs.push(drugForm);
+    }
+
+    deleteDrug(drugIndex: number) {
+        this.drugs.removeAt(drugIndex);
+    }
+
+    private generateNewDrug() {
+        return {
             name: ["", [Validators.required]],
             dosage: ["", [Validators.required]],
             dosage_measure: ["mg", [Validators.required]],
@@ -60,15 +52,14 @@ export class HomeComponent implements OnInit {
             application_interval_measure: ["hour(s)", [Validators.required]],
             duration: ["", [Validators.required]],
             duration_measure: ["day(s)", [Validators.required]],
-        });
-
-        this.drugs.push(drugForm);
+        };
     }
 
     ShowResult() {
         if (this.protocolForm.valid) {
-            this.drug = this.protocolForm.getRawValue() as Drug;
-            console.table(this.drug);
+            const protocol: Protocol =
+                this.protocolForm.getRawValue() as Protocol;
+            console.table(protocol.drugs);
         }
     }
 }
