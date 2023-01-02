@@ -19,6 +19,7 @@ select:focus {
 
 a {
     color: rgb(163, 151, 146);
+    cursor: pointer;
 }
 
 i {

@@ -1,6 +1,7 @@
 <div *ngIf="protocol; else noprotocol">
     <div *ngFor="let drug of protocol.drugs">
         <p>Drug Name: {{ drug.name }}</p>
+        <p>Drug Half Life: {{ drug.halfLife }}</p>
         <p>Drug Dosage: {{ drug.dosage }}</p>
         <p>Drug interval: {{ drug.application_interval }}</p>
         <p>Drug duration: {{ drug.duration }}</p>

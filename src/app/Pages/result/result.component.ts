@@ -17,5 +17,7 @@ export class ResultComponent implements OnInit {
         this.protocol = this._service.getProtocol();
 
         var chart = this._service.getChart("chart");
+
+        console.log(this._service.getDataSets);
     }
 }

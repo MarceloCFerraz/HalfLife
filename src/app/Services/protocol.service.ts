@@ -43,31 +43,52 @@ export class ProtocolService {
      */
     private fillDrugsCurves() {
         this.protocol.drugs.forEach((drug) => {
+            let day = 0;
             let drugConcentration = drug.dosage;
+
+            const application_interval = drug.application_interval;
+            const halflife = drug.halfLife;
+            const dosage = drug.dosage;
+            const duration = drug.duration;
+
             let drugCurve = {
                 name: drug.name,
                 days: [0],
                 concentration: [drugConcentration],
             };
 
-            for (
-                let day = 0;
-                drugConcentration > 1;
-                day + drug.application_interval
-            ) {
-                if (day > 0) {
-                    drugConcentration /= 2;
+            let applications = [
+                {
+                    day: 0,
+                    concentration: drugConcentration,
+                },
+            ];
 
-                    if (day < drug.duration) {
-                        drugConcentration += drug.dosage;
-                    }
+            while (drugConcentration > 1) {
+                drugConcentration = 0;
 
-                    drugCurve.days.push(day);
-                    drugCurve.concentration.push(drugConcentration);
+                if (day % application_interval == 0 && day <= duration) {
+                    applications.push({ day: day, concentration: dosage });
                 }
+                applications.forEach((application) => {
+                    if (
+                        day % halflife == 0 &&
+                        (application.day + halflife) % day == 0
+                    ) {
+                        application.concentration /= 2;
+                    }
+                    drugConcentration += application.concentration;
+                });
+
+                console.info({ day, drugConcentration });
+                console.table(applications);
+
+                day += 1;
             }
 
             this.drugsCurves.push(drugCurve);
+
+            console.table(this.drugsCurves);
         });
     }
     getDataSets() {
