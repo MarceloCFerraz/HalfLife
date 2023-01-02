@@ -16,17 +16,6 @@ export class ResultComponent implements OnInit {
     ngOnInit(): void {
         this.protocol = this._service.getProtocol();
 
-        var chart = new Chart("chart", {
-            type: "line",
-            data: {
-                labels: ["2022", "2021", "2020", "2019"],
-                datasets: [
-                    {
-                        label: "Numbers by year",
-                        data: [15000, 11200, 10000, 1000],
-                    },
-                ],
-            },
-        });
+        var chart = this._service.getChart("chart");
     }
 }

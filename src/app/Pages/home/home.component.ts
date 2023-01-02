@@ -45,13 +45,9 @@ export class HomeComponent implements OnInit {
         return {
             name: ["", [Validators.required]],
             dosage: ["", [Validators.required]],
-            dosage_measure: ["mg", [Validators.required]],
             halflife: ["", [Validators.required]],
-            halflife_measure: ["hour(s)", [Validators.required]],
             application_interval: ["", [Validators.required]],
-            application_interval_measure: ["hour(s)", [Validators.required]],
             duration: ["", [Validators.required]],
-            duration_measure: ["day(s)", [Validators.required]],
         };
     }
 
