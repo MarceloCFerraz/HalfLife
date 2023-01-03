@@ -1,13 +1,33 @@
-<div *ngIf="protocol; else noprotocol">
-    <div *ngFor="let drug of protocol.drugs">
-        <p>Drug Name: {{ drug.name }}</p>
-        <p>Drug Half Life: {{ drug.halfLife }}</p>
-        <p>Drug Dosage: {{ drug.dosage }}</p>
-        <p>Drug interval: {{ drug.application_interval }}</p>
-        <p>Drug duration: {{ drug.duration }}</p>
+<div class="container pt-5 pb-5 bg-light bg-gradient rounded-5">
+    <div class="container text-center">
+        <div class="row align-items-start">
+            <div class="col">
+                <div (click)="returnToHome()" class="mx-5 pointer">
+                    <div class="border rounded-5">
+                        <i class="bi bi-arrow-left"> </i>
+                        Back
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <h4 class="titles italic bold text-center">Protocol Result</h4>
+            </div>
+            <div class="col">
+                <!-- empty div just to align in 3 columns -->
+            </div>
+        </div>
+
+        <div *ngIf="protocol; else noProtocol"></div>
+        <ng-template #noProtocol>
+            <div class="pt-5 text-center">
+                <p class="subtitles">No drugs in the protocol.</p>
+                <p class="subtitles">
+                    Please, go back to the main page and register some drugs in
+                    your protocol
+                </p>
+            </div>
+        </ng-template>
+
+        <canvas class="px-5" id="chart"></canvas>
     </div>
 </div>
-
-<canvas id="chart"></canvas>
-
-<ng-template #noprotocol> no drugs here, champs </ng-template>

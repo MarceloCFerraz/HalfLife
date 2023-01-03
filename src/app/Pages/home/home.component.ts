@@ -58,6 +58,9 @@ export class HomeComponent implements OnInit {
 
             this._service.saveProtocol(protocol);
 
+            for (let i = 0; i < protocol.drugs.length; i++) {
+                this.deleteDrug(i);
+            }
             this._router.navigate(["result"]);
         }
     }

@@ -1,6 +1,8 @@
 import { ProtocolService } from "./../../Services/protocol.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit } from "@angular/core";
+import { ResolveEnd, Router } from "@angular/router";
 import { Chart } from "chart.js/auto";
+import { filter } from "rxjs";
 import { Protocol } from "src/app/Models/Protocol";
 
 @Component({
@@ -10,12 +12,26 @@ import { Protocol } from "src/app/Models/Protocol";
 })
 export class ResultComponent implements OnInit {
     protocol!: Protocol;
+    chart: any;
 
-    constructor(private _service: ProtocolService) {}
+    constructor(
+        private _service: ProtocolService,
+        private _router: Router,
+        private elementRef: ElementRef
+    ) {}
 
     ngOnInit(): void {
         this.protocol = this._service.getProtocol();
 
-        var chart = this._service.getChart("chart");
+        let chart = this._service.getChart("chart");
+        this.chart = chart;
+    }
+
+    returnToHome() {
+        if (this.chart != undefined) {
+            this.chart.destroy();
+            console.info("chart destroyed");
+        }
+        this._router.navigate(["home"]);
     }
 }

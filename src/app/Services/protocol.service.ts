@@ -1,3 +1,4 @@
+import { DrugCurve } from "./../Models/DrugCurve";
 import { Drug } from "src/app/Models/Drug";
 import { Chart, ChartDataset, Point } from "chart.js/auto";
 import { Protocol } from "./../Models/Protocol";
@@ -8,12 +9,13 @@ import { Injectable } from "@angular/core";
 })
 export class ProtocolService {
     protocol!: Protocol;
-    drugsCurves: any[] = [];
+    drugsCurves: DrugCurve[] = [];
 
     constructor() {}
 
     saveProtocol(protocol: Protocol) {
         this.protocol = protocol;
+        console.table(this.protocol.drugs);
         this.fillDrugsCurves();
     }
 
@@ -22,11 +24,24 @@ export class ProtocolService {
     }
 
     getChart(chartName: string) {
-        var chart = new Chart(chartName, {
+        let chart = new Chart(chartName, {
             type: "line",
             data: {
-                labels: this.drugsCurves.map((curve) => curve.days),
+                labels: this.drugsCurves[this.getLongestDrugIndex()].days,
                 datasets: this.getDataSets(),
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        labels: {
+                            // This more specific font property overrides the global property
+                            // https://www.chartjs.org/docs/latest/general/fonts.html
+                            font: {
+                                family: "Rubik",
+                            },
+                        },
+                    },
+                },
             },
         });
 
@@ -51,7 +66,7 @@ export class ProtocolService {
             const dosage = drug.dosage;
             const duration = drug.duration;
 
-            let drugCurve = {
+            let drugCurve: DrugCurve = {
                 name: drug.name,
                 days: [0],
                 concentration: [drugConcentration],
@@ -90,16 +105,19 @@ export class ProtocolService {
                     drugConcentration += application.concentration;
                 });
 
-                if (day == drugCurve.days[drugCurve.days.length - 1]) {
+                if (
+                    day != 0 &&
+                    day == drugCurve.days[drugCurve.days.length - 1]
+                ) {
                     drugCurve.concentration.push(drugConcentration);
                 }
 
                 day += 1;
             }
             this.drugsCurves.push(drugCurve);
-            console.table(drugCurve);
         });
     }
+
     getDataSets() {
         let dataset:
             | ChartDataset<"line", (number | Point | null)[]>[]
@@ -113,5 +131,24 @@ export class ProtocolService {
         });
 
         return dataset;
+    }
+
+    getLongestDrugIndex(): number {
+        let result = 0;
+        let longestDrugConcentration = 0;
+
+        for (let i = 0; i < this.drugsCurves.length; i++) {
+            let curve = this.drugsCurves.at(i);
+            if (
+                curve != undefined &&
+                curve.days[curve.days.length - 1] > longestDrugConcentration
+            ) {
+                let lastItemIndex = curve.days.length - 1;
+                result = i;
+                longestDrugConcentration = curve.days[lastItemIndex];
+            }
+        }
+
+        return result;
     }
 }
