@@ -73,6 +73,7 @@ export class ProtocolService {
                     day <= duration
                 ) {
                     applications.push({ day: day, concentration: dosage });
+                    drugCurve.days.push(day);
                 }
                 applications.forEach((application) => {
                     let checkDay =
@@ -82,14 +83,21 @@ export class ProtocolService {
 
                     if (day > 0 && day != application.day && day == checkDay) {
                         application.concentration /= 2;
+                        if (day != drugCurve.days[drugCurve.days.length - 1]) {
+                            drugCurve.days.push(day);
+                        }
                     }
                     drugConcentration += application.concentration;
                 });
 
+                if (day == drugCurve.days[drugCurve.days.length - 1]) {
+                    drugCurve.concentration.push(drugConcentration);
+                }
+
                 day += 1;
             }
-
             this.drugsCurves.push(drugCurve);
+            console.table(drugCurve);
         });
     }
     getDataSets() {
