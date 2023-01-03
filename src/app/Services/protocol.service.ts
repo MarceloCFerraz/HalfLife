@@ -67,20 +67,26 @@ export class ProtocolService {
             while (drugConcentration > 1) {
                 drugConcentration = 0;
 
-                if (day % application_interval == 0 && day <= duration) {
+                if (
+                    day > 0 &&
+                    day % application_interval == 0 &&
+                    day <= duration
+                ) {
                     applications.push({ day: day, concentration: dosage });
                 }
                 applications.forEach((application) => {
-                    if (
-                        day % halflife == 0 &&
-                        (application.day + halflife) % day == 0
-                    ) {
+                    let checkDay =
+                        application.day +
+                        halflife *
+                            Math.floor((day - application.day) / halflife);
+
+                    if (day > 0 && day != application.day && day == checkDay) {
                         application.concentration /= 2;
                     }
                     drugConcentration += application.concentration;
                 });
 
-                console.info({ day, drugConcentration });
+                // console.info({ day, drugConcentration });
                 console.table(applications);
 
                 day += 1;
