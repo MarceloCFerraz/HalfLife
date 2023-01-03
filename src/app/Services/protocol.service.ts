@@ -1,3 +1,4 @@
+import { DrugInfo } from "./../Models/DrugInfo";
 import { DrugCurve } from "./../Models/DrugCurve";
 import { Drug } from "src/app/Models/Drug";
 import { Chart, ChartDataset, Point } from "chart.js/auto";
@@ -15,7 +16,6 @@ export class ProtocolService {
 
     saveProtocol(protocol: Protocol) {
         this.protocol = protocol;
-        console.table(this.protocol.drugs);
         this.fillDrugsCurves();
     }
 
@@ -47,6 +47,23 @@ export class ProtocolService {
 
         return chart;
     }
+
+    getDrugsInfo() {
+        let drugsInfo: DrugInfo[] = [];
+
+        this.drugsCurves.forEach((curve) => {
+            let peakConcentration = this.getPeakDrugConcentration(curve);
+            let peakDay = this.getPeakDrugDay(curve);
+
+            drugsInfo.push({
+                name: curve.name,
+                peakConcentration: peakConcentration,
+                peakDay: peakDay,
+            });
+        });
+        return drugsInfo;
+    }
+
     /**
      * [
      *  {
@@ -114,11 +131,13 @@ export class ProtocolService {
 
                 day += 1;
             }
+
+            console.table(drugCurve);
             this.drugsCurves.push(drugCurve);
         });
     }
 
-    getDataSets() {
+    private getDataSets() {
         let dataset:
             | ChartDataset<"line", (number | Point | null)[]>[]
             | { label: any; data: any }[] = [];
@@ -133,7 +152,7 @@ export class ProtocolService {
         return dataset;
     }
 
-    getLongestDrugIndex(): number {
+    private getLongestDrugIndex(): number {
         let result = 0;
         let longestDrugConcentration = 0;
 
@@ -150,5 +169,34 @@ export class ProtocolService {
         }
 
         return result;
+    }
+
+    private getPeakDrugConcentration(curve: DrugCurve) {
+        let max = curve.concentration[0];
+        for (let i = 0; i < curve.concentration.length; i++) {
+            let concentration = curve.concentration[i];
+
+            if (concentration > max) {
+                max = concentration;
+            }
+        }
+
+        return max;
+    }
+
+    private getPeakDrugDay(curve: DrugCurve) {
+        let max = curve.concentration[0];
+        let day = 0;
+
+        for (let i = 0; i < curve.concentration.length; i++) {
+            let concentration = curve.concentration[i];
+
+            if (concentration > max) {
+                max = concentration;
+                day = curve.days[i];
+            }
+        }
+
+        return day;
     }
 }
