@@ -86,15 +86,10 @@ export class ProtocolService {
                     drugConcentration += application.concentration;
                 });
 
-                // console.info({ day, drugConcentration });
-                console.table(applications);
-
                 day += 1;
             }
 
             this.drugsCurves.push(drugCurve);
-
-            console.table(this.drugsCurves);
         });
     }
     getDataSets() {
