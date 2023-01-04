@@ -13,7 +13,7 @@ import { Protocol } from "src/app/Models/Protocol";
     styleUrls: ["./result.component.css"],
 })
 export class ResultComponent implements OnInit {
-    chart: any;
+    chart!: Chart;
     protected protocol!: Protocol;
     protected drugsInfo!: DrugInfo[];
 
@@ -22,9 +22,7 @@ export class ResultComponent implements OnInit {
     ngOnInit(): void {
         this.protocol = this._service.getProtocol();
 
-        let chart = this._service.getChart("chart");
-        this.chart = chart;
-
+        this.chart = this._service.getChart("chart");
         this.drugsInfo = this._service.getDrugsInfo();
     }
 

@@ -31,6 +31,19 @@ export class ProtocolService {
                 datasets: this.getDataSets(),
             },
             options: {
+                aspectRatio: 1,
+                scales: {
+                    x: {
+                        ticks: {
+                            callback: (value) => `${value} days`,
+                        },
+                    },
+                    y: {
+                        ticks: {
+                            callback: (value) => `${value} mg`,
+                        },
+                    },
+                },
                 plugins: {
                     legend: {
                         labels: {
@@ -64,15 +77,6 @@ export class ProtocolService {
         return drugsInfo;
     }
 
-    /**
-     * [
-     *  {
-     *      name: drug name,
-     *      days:  [0, 1, 2, 3, 4, ...]
-     *      concentration: [250, 350, 500, ...]
-     *  }
-     * ]
-     */
     private fillDrugsCurves() {
         this.protocol.drugs.forEach((drug) => {
             let day = 0;

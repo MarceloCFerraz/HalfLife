@@ -5,13 +5,15 @@ This is a personal project that aims to help regular people and health professio
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 
 ## Original Design
+
 The original design of this tool was made using [Figma](https://www.figma.com/) to wireframe everything and the font combination was made with [FontJoy](https://fontjoy.com/)
 
 Take a look at the design project [Here](https://www.figma.com/file/jPkxdJJk9ZlvhCoaQCzfrt/Half-Life?node-id=0%3A1&t=GTQTktv7IeM9OWE9-1)
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Before anything, install node.js 16.19.0 ant then run `npm i`.
+Now run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 

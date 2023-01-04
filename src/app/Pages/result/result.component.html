@@ -29,16 +29,30 @@
             </div>
         </ng-template>
 
-        <canvas class="px-5 pb-5" id="chart"></canvas>
-
-        <div class="row col px-5 text-start" *ngFor="let drug of drugsInfo">
-            <p>
-                The <span class="bold">"{{ drug.name }}"</span> drug will reach
-                it's peak of
-                <span class="bold">{{ drug.peakConcentration }} mg</span> at the
-                <span class="bold">{{ drug.peakDay }}th day</span>
-            </p>
+        <div
+            class="d-flex justify-content-center"
+            style="max-width: 1600px; max-height: 900px"
+        >
+            <canvas class="px-5 pb-5" id="chart"></canvas>
         </div>
+
+        <li
+            class="grid px-5 text-start list-group gap-0"
+            *ngFor="let drug of drugsInfo"
+        >
+            <ul class="list-group-item">
+                The
+                <span class="bold italic">"{{ drug.name }}"</span>
+                drug will reach it's peak of
+                <span class="bold"
+                    >{{ drug.peakConcentration | number : "1.2-2" }} mg</span
+                >
+                at the
+                <span class="bold"
+                    >{{ drug.peakDay | number : "1.0-0" }}th day</span
+                >
+            </ul>
+        </li>
 
         <div class="row col px-5 pt-3 text-danger">
             <h4 class="subtitles bold text-center">Attention</h4>
