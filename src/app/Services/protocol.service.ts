@@ -109,7 +109,6 @@ export class ProtocolService {
                     day <= duration
                 ) {
                     applications.push({ day: day, concentration: dosage });
-                    drugCurve.days.push(day);
                 }
                 applications.forEach((application) => {
                     let checkDay =
@@ -119,17 +118,12 @@ export class ProtocolService {
 
                     if (day > 0 && day != application.day && day == checkDay) {
                         application.concentration /= 2;
-                        if (day != drugCurve.days[drugCurve.days.length - 1]) {
-                            drugCurve.days.push(day);
-                        }
                     }
                     drugConcentration += application.concentration;
                 });
 
-                if (
-                    day != 0 &&
-                    day == drugCurve.days[drugCurve.days.length - 1]
-                ) {
+                if (day != 0) {
+                    drugCurve.days.push(day);
                     drugCurve.concentration.push(drugConcentration);
                 }
 
@@ -190,7 +184,7 @@ export class ProtocolService {
 
     private getPeakDrugDay(curve: DrugCurve) {
         let max = curve.concentration[0];
-        let day = 0;
+        let day = curve.days[0];
 
         for (let i = 0; i < curve.concentration.length; i++) {
             let concentration = curve.concentration[i];

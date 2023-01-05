@@ -30,6 +30,6 @@ export class ResultComponent implements OnInit {
         if (this.chart != undefined) {
             // TODO: figure out a way to reset graph every time
         }
-        this._router.navigate(["home"]);
+        this._router.navigate([""]);
     }
 }
