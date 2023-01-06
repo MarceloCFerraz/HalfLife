@@ -7,8 +7,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 | :placard: Vitrine.Dev |     |
 | -------------  | --- |
-| :sparkles: Nome        | **Drugs Half Life**
-| :label: Tecnologias | Angular 15, Typescript, Chart.JS
+| :sparkles: Name        | **Drugs Half Life**
+| :label: Tech | Angular 15, Typescript, Chart.JS
 | :rocket: URL         | https://bit.ly/drugshalflife
 
 <!-- Inserir imagem com a #vitrinedev ao final do link -->
