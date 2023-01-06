@@ -12,6 +12,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 | :rocket: URL         | https://bit.ly/drugshalflife
 
 <!-- Inserir imagem com a #vitrinedev ao final do link -->
+## Screenshots
 ![](https://i.imgur.com/2vSOlRp.jpg#vitrinedev)
 
 
