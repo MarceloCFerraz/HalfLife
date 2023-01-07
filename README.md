@@ -13,7 +13,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 <!-- Inserir imagem com a #vitrinedev ao final do link -->
 ## Screenshots
-![](https://i.imgur.com/2vSOlRp.jpg#vitrinedev)
+![Screenshot showing the result page with a chart of three drugs' concentration in their respective times of administration](https://i.imgur.com/LcYoWef.png#vitrinedev)
 
 
 ## Original Design
