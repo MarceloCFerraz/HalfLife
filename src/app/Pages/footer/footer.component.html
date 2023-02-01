@@ -1,3 +1,25 @@
-<footer class="subtitles bottom-0 pt-3">
-    <div class="text-center my-5">&copy; All rights reserved 2023</div>
+<footer class="footer d-flex justify-content-center bottom-0 pt-3">
+    <div class="col-sm-3 text-center mb-3">
+        <hr />
+        <div class="row">
+            <div class="subtitles">
+                <p>&copy; All rights reserved {{ year }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="subtitles light">
+                <span class="d-block"
+                    >Developed by: Marcelo Carvalho Ferraz</span
+                >
+                <span class="d-block" (click)="linkedIn()">
+                    Follow me on:
+                    <span class="underline link"> LinkedIn </span>
+                </span>
+                <span class="d-block" (click)="gitHub()">
+                    See my other projects on:
+                    <span class="underline link"> GitHub </span>
+                </span>
+            </div>
+        </div>
+    </div>
 </footer>

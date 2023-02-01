@@ -1,16 +1,14 @@
-import { DrugInfo } from "./../../Models/DrugInfo";
-import { DrugCurve } from "./../../Models/DrugCurve";
-import { ProtocolService } from "./../../Services/protocol.service";
-import { Component, ElementRef, OnInit } from "@angular/core";
-import { ResolveEnd, Router } from "@angular/router";
+import { DrugInfo } from "../../../Models/DrugInfo";
+import { ProtocolService } from "../../../Services/protocol.service";
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { Chart } from "chart.js/auto";
-import { filter } from "rxjs";
 import { Protocol } from "src/app/Models/Protocol";
 
 @Component({
     selector: "app-result",
     templateUrl: "./result.component.html",
-    styleUrls: ["./result.component.css"],
+    styleUrls: ["./result.component.css", "../home.component.css"],
 })
 export class ResultComponent implements OnInit {
     chart!: Chart;
