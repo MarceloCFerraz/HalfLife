@@ -100,7 +100,7 @@ export class ProtocolService {
                 },
             ];
 
-            while (drugConcentration > 1) {
+            while (drugConcentration > 0.01) {
                 drugConcentration = 0;
 
                 if (
